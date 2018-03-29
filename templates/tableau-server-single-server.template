@@ -795,12 +795,12 @@
                                 "waitAfterCompletion": "0"
                             },
                             "08-publish-redshift-datasource": {
-                                "cwd": "C:\\TableauServer\\10.4\\bin",
                                 "command": {
                                     "Fn::Join": [
                                         "",
                                         [
-                                            "tabcmd publish c:\\tabsetup\\redshift.tds ",
+                                            "powershell.exe -ExecutionPolicy RemoteSigned -Command \"",
+                                            "& C:\\TableauServer\\*\\bin\\tabcmd.exe publish c:\\tabsetup\\redshift.tds ",
                                             "--server http://localhost ",
                                             "--username ",
                                             {
@@ -822,19 +822,20 @@
                                                 "Ref": "RedshiftPassword"
                                             },
                                             " ",
-                                            "--save-db-password"
+                                            "--save-db-password",
+                                            "\""
                                         ]
                                     ]
                                 },
                                 "waitAfterCompletion": "0"
                             },
                             "09-publish-postgres-datasource": {
-                                "cwd": "C:\\TableauServer\\10.4\\bin",
                                 "command": {
                                     "Fn::Join": [
                                         "",
                                         [
-                                            "tabcmd publish c:\\tabsetup\\postgres.tds ",
+                                            "powershell.exe -ExecutionPolicy RemoteSigned -Command \"",
+                                            "& C:\\TableauServer\\*\\bin\\tabcmd.exe publish c:\\tabsetup\\postgres.tds ",
                                             "--server http://localhost ",
                                             "--username ",
                                             {
@@ -856,19 +857,20 @@
                                                 "Ref": "RDSPassword"
                                             },
                                             " ",
-                                            "--save-db-password"
+                                            "--save-db-password",
+                                            "\""
                                         ]
                                     ]
                                 },
                                 "waitAfterCompletion": "0"
                             },
                             "10-publish-sample-dashboard": {
-                                "cwd": "C:\\TableauServer\\10.4\\bin",
                                 "command": {
                                     "Fn::Join": [
                                         "",
                                         [
-                                            "tabcmd publish c:\\tabsetup\\quickstart.twb ",
+                                            "powershell.exe -ExecutionPolicy RemoteSigned -Command \"",
+                                            "& C:\\TableauServer\\*\\bin\\tabcmd.exe publish c:\\tabsetup\\quickstart.twb ",
                                             "--server http://localhost ",
                                             "--username ",
                                             {
@@ -878,7 +880,8 @@
                                             "--password ",
                                             {
                                                 "Ref": "ContentAdminPassword"
-                                            }
+                                            },
+                                            "\""
                                         ]
                                     ]
                                 },
