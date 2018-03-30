@@ -9,7 +9,7 @@
     },
     {
         "ParameterKey": "BastionBanner",
-        "ParameterValue": "https://s3.amazonaws.com/quickstart-reference/linux/bastion/latest/scripts/banner_message.txt"
+        "ParameterValue": "https://aws-quickstart.s3.amazonaws.com/quickstart-tableau-awsdata/submodules/quickstart-linux-bastion/scripts/banner_message.txt"
     },
     {
         "ParameterKey": "BastionInboundCIDR",
