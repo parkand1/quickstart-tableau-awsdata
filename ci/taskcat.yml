@@ -19,10 +19,10 @@ global:
     - us-west-2
   reporting: true
 tests:
-  default:
+  tableau-aws:
     parameter_input: tableau-awsdata-master.json
     template_file: tableau-awsdata-master.template
-  no-dataset:
+  tableau-no-dataset:
     parameter_input: tableau-awsdata-master-no-dataset.json
     regions:
       - us-east-2
