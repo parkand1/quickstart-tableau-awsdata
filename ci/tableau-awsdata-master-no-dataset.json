@@ -198,5 +198,9 @@
     {
         "ParameterKey": "VPCDefinition",
         "ParameterValue": "QuickstartDefault"
+    },
+    {
+        "ParameterKey":"QSS3BucketName",
+        "ParameterValue":"$[taskcat_autobucket]"
     }
 ]
