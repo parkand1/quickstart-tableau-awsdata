@@ -548,6 +548,7 @@
                 "dw2.large",
                 "dw2.8xlarge",
                 "dc1.large",
+                "dc2.large",
                 "dc1.8xlarge",
                 "ds1.xlarge",
                 "ds1.8xlarge",
@@ -555,7 +556,7 @@
                 "ds2.8xlarge"
             ],
             "ConstraintDescription": "must be a valid RedShift node type.",
-            "Default": "dc1.large",
+            "Default": "dc2.large",
             "Description": "The node type to be provisioned for the redshift cluster",
             "Type": "String"
         },
