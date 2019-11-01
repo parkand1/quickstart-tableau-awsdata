@@ -145,7 +145,7 @@
                             "MasterUsername": { "Ref": "MasterUsername" },
                             "MasterUserPassword":
                                 { "Ref": "MasterUserPassword" },
-                            "PubliclyAccessible": "false",
+                            "PubliclyAccessible": false,
                             "Port": { "Ref": "DatabasePort" },
                             "VpcSecurityGroupIds": [{ "Ref": "SecurityGroup" }],
                             "ClusterSubnetGroupName":

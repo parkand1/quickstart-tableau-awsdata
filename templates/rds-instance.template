@@ -117,11 +117,11 @@
         "RDSInstance": {
             "Type": "AWS::RDS::DBInstance",
             "Properties": {
-                "PubliclyAccessible": "false",
+                "PubliclyAccessible": false,
                 "AllocatedStorage": {
                     "Ref": "DBAllocatedStorage"
                 },
-                "AutoMinorVersionUpgrade": "false",
+                "AutoMinorVersionUpgrade": false,
                 "VPCSecurityGroups": [
                     {
                         "Ref": "SecurityGroup"

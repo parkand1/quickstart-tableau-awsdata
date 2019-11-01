@@ -242,8 +242,8 @@
                 "SecurityGroupIngress": [
                     {
                         "IpProtocol": "tcp",
-                        "FromPort": "3389",
-                        "ToPort": "3389",
+                        "FromPort": 3389,
+                        "ToPort": 3389,
                         "CidrIp": {
                             "Ref": "SourceCidr"
                         }
