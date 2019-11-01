@@ -121,7 +121,7 @@
     },
     {
         "ParameterKey": "RedshiftNodeType",
-        "ParameterValue": "dc1.large"
+        "ParameterValue": "dc2.large"
     },
     {
         "ParameterKey": "RedshiftNumberOfNodes",
@@ -200,7 +200,7 @@
         "ParameterValue": "QuickstartDefault"
     },
     {
-        "ParameterKey":"QSS3BucketName",
-        "ParameterValue":"$[taskcat_autobucket]"
+        "ParameterKey": "QSS3BucketName",
+        "ParameterValue": "$[taskcat_autobucket]"
     }
 ]
