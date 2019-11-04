@@ -3,26 +3,26 @@ global:
   owner: quickstart-eng@amazon.com
   qsname: quickstart-tableau-awsdata
   regions:
-    #- ap-northeast-1
-    #- ap-northeast-2
-    #- ap-south-1
-    #- ap-southeast-1
-    #- ap-southeast-2
+    - ap-northeast-1
+    - ap-northeast-2
+    - ap-south-1
+    - ap-southeast-1
+    - ap-southeast-2
     - ca-central-1
-    #- eu-central-1
-    #- eu-west-1
-    #- eu-west-2
-    #- us-east-1
-    #- us-east-2
-    #- us-west-1
-    #- us-west-2
+    - eu-central-1
+    - eu-west-1
+    - eu-west-2
+    - us-east-1
+    - us-east-2
+    - us-west-1
+    - us-west-2
   reporting: true
 tests:
   tableau-aws:
     parameter_input: tableau-awsdata-master.json
     template_file: tableau-awsdata-master.template
-  # tableau-no-dataset:
-  #   parameter_input: tableau-awsdata-master-no-dataset.json
-  #   regions:
-  #     - us-east-2
-  #   template_file: tableau-awsdata-master.template
+  tableau-no-dataset:
+    parameter_input: tableau-awsdata-master-no-dataset.json
+    regions:
+      - us-east-2
+    template_file: tableau-awsdata-master.template
