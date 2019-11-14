@@ -479,7 +479,8 @@
                 "db.t2.micro",
                 "db.t2.small",
                 "db.t2.medium",
-                "db.t2.large"
+                "db.t2.large",
+                "db.t3.medium"
             ],
             "ConstraintDescription": "Must be a valid RDS database instance type.",
             "Default": "db.t2.large",
