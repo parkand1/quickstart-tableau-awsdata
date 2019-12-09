@@ -89,7 +89,7 @@
     },
     {
         "ParameterKey": "RDSInstanceClass",
-        "ParameterValue": "db.t3.medium"
+        "ParameterValue": "db.t2.large"
     },
     {
         "ParameterKey": "RDSInstanceIdentifier",
