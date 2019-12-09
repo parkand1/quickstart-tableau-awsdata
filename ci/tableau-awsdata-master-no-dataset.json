@@ -53,7 +53,7 @@
     },
     {
         "ParameterKey": "LoadDataset",
-        "ParameterValue": "false"
+        "ParameterValue": "true"
     },
     {
         "ParameterKey": "RDGWAdminPassword",
@@ -121,7 +121,7 @@
     },
     {
         "ParameterKey": "RedshiftNodeType",
-        "ParameterValue": "dc2.large"
+        "ParameterValue": "dc1.large"
     },
     {
         "ParameterKey": "RedshiftNumberOfNodes",
@@ -169,7 +169,7 @@
     },
     {
         "ParameterKey": "RegPhone",
-        "ParameterValue": "TestPhone"
+        "ParameterValue": "555-555-5555"
     },
     {
         "ParameterKey": "RegState",
@@ -181,7 +181,7 @@
     },
     {
         "ParameterKey": "RegZip",
-        "ParameterValue": "TestZip"
+        "ParameterValue": "55555"
     },
     {
         "ParameterKey": "SqlWorkerInstanceType",
