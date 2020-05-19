@@ -592,7 +592,7 @@ Resources:
     Type: AWS::CloudFormation::Stack
     Properties:
       TemplateURL: !Sub
-        - https://${S3BucketName}.${S3Region}.amazonaws.com/${QSS3KeyPrefix}templates/rds-instance.template
+       - https://${S3BucketName}.${S3Region}.amazonaws.com/${QSS3KeyPrefix}templates/rds-instance.template
        - S3Region: !If [UsingDefaultBucket, !Ref 'AWS::Region', !Ref QSS3BucketRegion]
          S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
       Parameters:
