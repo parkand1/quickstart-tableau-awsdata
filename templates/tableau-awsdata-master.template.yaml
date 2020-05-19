@@ -87,6 +87,7 @@ Metadata:
           default: AWS Quick Start Configuration
         Parameters:
           - QSS3BucketName
+          - QSS3BucketRegion
           - QSS3KeyPrefix
           - LoadDataset
           - DatasetS3BucketName
@@ -123,6 +124,8 @@ Metadata:
         default: Load dataset
       QSS3BucketName:
         default: Quick Start S3 Bucket Name
+      QSS3BucketRegion:
+        default: Quick Start S3 Bucket Region
       QSS3KeyPrefix:
         default: Quick Start S3 Key Prefix
       RDGWAdminPassword:
