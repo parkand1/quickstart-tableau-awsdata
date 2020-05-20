@@ -591,6 +591,9 @@ Conditions:
   NoTableauServerInboundCIDRCondition: !Equals
     - !Ref 'TableauServerInboundCIDR'
     - <VPCCIDR>
+  UsingDefaultBucket: !Equals 
+    - !Ref 'QSS3BucketName'
+    - <VPCCIDR>
 Mappings:
   VPCDefinitions:
     QuickstartDefault:
