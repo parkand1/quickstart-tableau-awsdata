@@ -194,9 +194,6 @@ Conditions:
   LoadDatasetCondition: !Equals
     - !Ref 'LoadDataset'
     - 'true'
-  GovCloudCondition: !Equals
-    - !Ref 'AWS::Region'
-    - us-gov-west-1
 Resources:
   InstanceSecurityGroup:
     Type: AWS::EC2::SecurityGroup
@@ -411,7 +408,7 @@ Resources:
               source: !Sub
                 - https://${DatasetS3BucketName}.${S3Region}.amazonaws.com/${DatasetS3KeyPrefix}dashboard/redshift.tds
                 - S3Region: !If [UsingDefaultBucket, !Ref 'AWS::Region', !Ref QSS3BucketRegion]
-                S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
+                  S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
               authentication: S3Access
             c:\tabsetup\postgres.tds:
               source: !Sub
