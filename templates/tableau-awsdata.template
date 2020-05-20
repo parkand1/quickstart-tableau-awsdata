@@ -621,8 +621,8 @@ Resources:
     Properties:
       TemplateURL: !Sub
         - https://${S3BucketName}.${S3Region}.amazonaws.com/${QSS3KeyPrefix}templates/sql-worker.template
-       - S3Region: !If [UsingDefaultBucket, !Ref 'AWS::Region', !Ref QSS3BucketRegion]
-         S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
+        - S3Region: !If [UsingDefaultBucket, !Ref 'AWS::Region', !Ref QSS3BucketRegion]
+          S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
       Parameters:
         DatasetS3BucketName: !Ref 'DatasetS3BucketName'
         DatasetS3KeyPrefix: !Ref 'DatasetS3KeyPrefix'
@@ -656,8 +656,8 @@ Resources:
     Properties:
       TemplateURL: !Sub
         - https://${S3BucketName}.${S3Region}.amazonaws.com/${QSS3KeyPrefix}templates/tableau-server-single-server.template
-       - S3Region: !If [UsingDefaultBucket, !Ref 'AWS::Region', !Ref QSS3BucketRegion]
-         S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
+        - S3Region: !If [UsingDefaultBucket, !Ref 'AWS::Region', !Ref QSS3BucketRegion]
+          S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
       Parameters:
         ContentAdminPassword: !Ref 'ContentAdminPassword'
         ContentAdminUser: !Ref 'ContentAdminUser'
