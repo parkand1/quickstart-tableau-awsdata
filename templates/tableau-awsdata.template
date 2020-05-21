@@ -405,17 +405,14 @@ Parameters:
     Type: String
   RedshiftNodeType:
     AllowedValues:
-      - dw1.xlarge
-      - dw1.8xlarge
-      - dw2.large
-      - dw2.8xlarge
-      - dc1.large
-      - dc2.large
-      - dc1.8xlarge
-      - ds1.xlarge
-      - ds1.8xlarge
       - ds2.xlarge
       - ds2.8xlarge
+      - dc1.large
+      - dc1.8xlarge
+      - dc2.large
+      - dc2.8xlarge
+      - ra3.4xlarge
+      - ra3.16xlarg
     ConstraintDescription: must be a valid RedShift node type.
     Default: dc2.large
     Description: The node type to be provisioned for the redshift cluster
@@ -547,9 +544,6 @@ Conditions:
     - !Equals
       - !Ref 'RootStackName'
       - <NONE>
-  GovCloudCondition: !Equals
-    - !Ref 'AWS::Region'
-    - us-gov-west-1
 Resources:
   IAMRolesStack:
     Type: AWS::CloudFormation::Stack
