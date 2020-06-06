@@ -589,9 +589,7 @@ Conditions:
   NoTableauServerInboundCIDRCondition: !Equals
     - !Ref 'TableauServerInboundCIDR'
     - <VPCCIDR>
-  GovCloudCondition: !Equals
-    - !Ref 'AWS::Region'
-    - us-gov-west-1
+  UsingDefaultBucket: !Equals [!Ref QSS3BucketName, 'aws-quickstart']
 Mappings:
   VPCDefinitions:
     QuickstartDefault:
