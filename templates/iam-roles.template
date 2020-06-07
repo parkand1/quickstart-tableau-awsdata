@@ -65,8 +65,7 @@ Resources:
             Statement:
               - Action:
                   - s3:GetObject
-                Resource: !Sub
-                  - arn:${Partition}:s3:::${QSS3BucketName}/${QSS3KeyPrefix}*
+                Resource: !Sub 'arn:${Partition}:s3:::${QSS3BucketName}/${QSS3KeyPrefix}*'
                 Effect: Allow
         - PolicyName: QuickstartRedshiftS3Access
           PolicyDocument:
