@@ -67,10 +67,6 @@ Resources:
                   - s3:GetObject
                 Resource: !Sub
                   - arn:${Partition}:s3:::${QSS3BucketName}/${QSS3KeyPrefix}*
-                  - Partition: !If
-                      - GovCloudCondition
-                      - aws-us-gov
-                      - aws
                 Effect: Allow
         - PolicyName: QuickstartRedshiftS3Access
           PolicyDocument:
@@ -79,21 +75,11 @@ Resources:
               - Action:
                   - s3:ListBucket
                 Effect: Allow
-                Resource: !Sub
-                  - arn:${Partition}:s3:::${DatasetS3BucketName}
-                  - Partition: !If
-                      - GovCloudCondition
-                      - aws-us-gov
-                      - aws
+                Resource: !Sub 'arn:${Partition}:s3:::${DatasetS3BucketName}'
               - Action:
                   - s3:GetObject
                 Effect: Allow
-                Resource: !Sub
-                  - arn:${Partition}:s3:::${DatasetS3BucketName}/${DatasetS3KeyPrefix}*
-                  - Partition: !If
-                      - GovCloudCondition
-                      - aws-us-gov
-                      - aws
+                Resource: !Sub 'arn:${Partition}:s3:::${DatasetS3BucketName}/${DatasetS3KeyPrefix}*'
   IAMRoleEc2Worker:
     Type: AWS::IAM::Role
     DependsOn: IAMRoleRedshiftWorker
@@ -114,12 +100,7 @@ Resources:
             Statement:
               - Action:
                   - s3:GetObject
-                Resource: !Sub
-                  - arn:${Partition}:s3:::${QSS3BucketName}/${QSS3KeyPrefix}*
-                  - Partition: !If
-                      - GovCloudCondition
-                      - aws-us-gov
-                      - aws
+                Resource: !Sub 'arn:${Partition}:s3:::${QSS3BucketName}/${QSS3KeyPrefix}*'
                 Effect: Allow
         - PolicyName: QuickstartEc2S3RedshiftAccess
           PolicyDocument:
@@ -136,21 +117,11 @@ Resources:
                 Resource: '*'
               - Action: s3:ListBucket
                 Effect: Allow
-                Resource: !Sub
-                  - arn:${Partition}:s3:::${DatasetS3BucketName}
-                  - Partition: !If
-                      - GovCloudCondition
-                      - aws-us-gov
-                      - aws
+                Resource: !Sub 'arn:${Partition}:s3:::${DatasetS3BucketName}'
               - Action:
                   - s3:GetObject
                 Effect: Allow
-                Resource: !Sub
-                  - arn:${Partition}:s3:::${DatasetS3BucketName}/${DatasetS3KeyPrefix}*
-                  - Partition: !If
-                      - GovCloudCondition
-                      - aws-us-gov
-                      - aws
+                Resource: !Sub 'arn:${Partition}:s3:::${DatasetS3BucketName}/${DatasetS3KeyPrefix}*'
   InstanceProfileEc2Worker:
     Type: AWS::IAM::InstanceProfile
     Properties:
