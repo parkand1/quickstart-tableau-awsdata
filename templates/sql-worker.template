@@ -223,7 +223,9 @@ Conditions:
   LoadDatasetCondition: !Equals
     - !Ref 'LoadDataset'
     - 'true'
-  UsingDefaultBucket: !Equals [!Ref QSS3BucketName, 'aws-quickstart']
+  GovCloudCondition: !Equals
+    - !Ref 'AWS::Region'
+    - us-gov-west-1
 Mappings:
   AWSAMIRegionMap:
     AMI:
@@ -265,12 +267,12 @@ Resources:
       VpcId: !Ref 'VpcId'
       SecurityGroupIngress:
         - IpProtocol: tcp
-          FromPort: '80'
-          ToPort: '80'
+          FromPort: 80
+          ToPort: 80
           CidrIp: '0.0.0.0/0'
         - IpProtocol: tcp
-          FromPort: '22'
-          ToPort: '22'
+          FromPort: 22
+          ToPort: 22
           CidrIp: !Ref 'SSHLocation'
   SQLWorker:
     Type: AWS::EC2::Instance
@@ -529,8 +531,8 @@ Resources:
       KeyName: !Ref 'KeyPairName'
       NetworkInterfaces:
         - AssociatePublicIpAddress: false
-          DeleteOnTermination: 'true'
-          DeviceIndex: 0
+          DeleteOnTermination: true
+          DeviceIndex: '0'
           SubnetId: !Ref 'SubnetId'
           GroupSet:
             - !Ref 'SecurityGroup'
