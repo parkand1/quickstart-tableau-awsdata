@@ -623,28 +623,60 @@ Resources:
         DatasetS3BucketName: !Ref 'DatasetS3BucketName'
         DatasetS3KeyPrefix: !Ref 'DatasetS3KeyPrefix'
         DatasetS3Region: !Ref 'DatasetS3Region'
-        IAMRoleEc2Worker: !GetAtt 'IAMRolesStack.Outputs.IAMRoleEc2Worker'
-        IAMRoleEc2WorkerArn: !GetAtt 'IAMRolesStack.Outputs.IAMRoleEc2WorkerArn'
-        IAMRoleRedshiftWorker: !GetAtt 'IAMRolesStack.Outputs.IAMRoleRedshiftWorker'
-        IAMRoleRedshiftWorkerArn: !GetAtt 'IAMRolesStack.Outputs.IAMRoleRedshiftWorkerArn'
-        IamInstanceProfile: !GetAtt 'IAMRolesStack.Outputs.InstanceProfileEc2Worker'
+        IAMRoleEc2Worker: !GetAtt 
+          - IAMRolesStack
+          - Outputs.IAMRoleEc2Worker
+        IAMRoleEc2WorkerArn: !GetAtt 
+          - IAMRolesStack
+          - Outputs.IAMRoleEc2WorkerArn
+        IAMRoleRedshiftWorker: !GetAtt 
+          - IAMRolesStack
+          - Outputs.IAMRoleRedshiftWorker
+        IAMRoleRedshiftWorkerArn: !GetAtt 
+          - IAMRolesStack
+          - Outputs.IAMRoleRedshiftWorkerArn
+        IamInstanceProfile: !GetAtt 
+          - IAMRolesStack
+          - Outputs.InstanceProfileEc2Worker
         InstanceType: !Ref 'SqlWorkerInstanceType'
         KeyPairName: !Ref 'KeyPairName'
         LoadDataset: !Ref 'LoadDataset'
         QSS3BucketName: !Ref 'QSS3BucketName'
         QSS3BucketRegion: !Ref 'QSS3BucketRegion'
         QSS3KeyPrefix: !Ref 'QSS3KeyPrefix'
-        RDSDBName: !GetAtt 'RDSInstanceStack.Outputs.DBName'
-        RDSDatabasePort: !GetAtt 'RDSInstanceStack.Outputs.Port'
-        RDSHost: !GetAtt 'RDSInstanceStack.Outputs.DBAddress'
-        RDSPassword: !GetAtt 'RDSInstanceStack.Outputs.DBPassword'
-        RDSUsername: !GetAtt 'RDSInstanceStack.Outputs.DBUser'
-        RedshiftClusterId: !GetAtt 'RedshiftClusterStack.Outputs.RedshiftClusterId'
-        RedshiftDBName: !GetAtt 'RedshiftClusterStack.Outputs.RedshiftDatabaseName'
-        RedshiftDatabasePort: !GetAtt 'RedshiftClusterStack.Outputs.RedshiftPort'
-        RedshiftHost: !GetAtt 'RedshiftClusterStack.Outputs.RedshiftHost'
-        RedshiftPassword: !GetAtt 'RedshiftClusterStack.Outputs.RedshiftPassword'
-        RedshiftUsername: !GetAtt 'RedshiftClusterStack.Outputs.RedshiftUsername'
+        RDSDBName: !GetAtt 
+          - RDSInstanceStack
+          - Outputs.DBName
+        RDSDatabasePort: !GetAtt 
+          - RDSInstanceStack
+          - Outputs.Port
+        RDSHost: !GetAtt 
+          - RDSInstanceStack
+          - Outputs.DBAddress
+        RDSPassword: !GetAtt 
+          - RDSInstanceStack
+          - Outputs.DBPassword
+        RDSUsername: !GetAtt 
+          - RDSInstanceStack
+          - Outputs.DBUser
+        RedshiftClusterId: !GetAtt 
+          - RedshiftClusterStack
+          - Outputs.RedshiftClusterId
+        RedshiftDBName: !GetAtt 
+          - RedshiftClusterStack
+          - Outputs.RedshiftDatabaseName
+        RedshiftDatabasePort: !GetAtt 
+          - RedshiftClusterStack
+          - Outputs.RedshiftPort
+        RedshiftHost: !GetAtt 
+          - RedshiftClusterStack
+          - Outputs.RedshiftHost
+        RedshiftPassword: !GetAtt 
+          - RedshiftClusterStack
+          - Outputs.RedshiftPassword
+        RedshiftUsername: !GetAtt 
+          - RedshiftClusterStack
+          - Outputs.RedshiftUsername
         SSHLocation: !Ref 'VPCCIDR'
         SubnetId: !Ref 'PrivateSubnet1ID'
         VpcId: !Ref 'VPCID'
@@ -660,21 +692,33 @@ Resources:
         ContentAdminUser: !Ref 'ContentAdminUser'
         DatasetS3BucketName: !Ref 'DatasetS3BucketName'
         DatasetS3KeyPrefix: !Ref 'DatasetS3KeyPrefix'
-        IAMRoleEc2Worker: !GetAtt 'IAMRolesStack.Outputs.IAMRoleEc2Worker'
-        IamInstanceProfile: !GetAtt 'IAMRolesStack.Outputs.InstanceProfileEc2Worker'
+        IAMRoleEc2Worker: !GetAtt 
+          - IAMRolesStack
+          - Outputs.IAMRoleEc2Worker
+        IamInstanceProfile: !GetAtt 
+          - IAMRolesStack
+          - Outputs.InstanceProfileEc2Worker
         KeyPairName: !Ref 'KeyPairName'
         LoadDataset: !Ref 'LoadDataset'
         QSS3BucketName: !Ref 'QSS3BucketName'
         QSS3BucketRegion: !Ref: 'QSS3BucketRegion'
         QSS3KeyPrefix: !Ref 'QSS3KeyPrefix'
         RDSDatabaseName: !Ref 'RDSDatabaseName'
-        RDSDatabasePort: !GetAtt 'RDSInstanceStack.Outputs.DBPort'
-        RDSHost: !GetAtt 'RDSInstanceStack.Outputs.DBAddress'
+        RDSDatabasePort: !GetAtt 
+          - RDSInstanceStack
+          - Outputs.DBPort
+        RDSHost: !GetAtt 
+          - RDSInstanceStack
+          - Outputs.DBAddress
         RDSPassword: !Ref 'RDSPassword'
         RDSUsername: !Ref 'RDSUsername'
         RedshiftDatabaseName: !Ref 'RedshiftDatabaseName'
-        RedshiftDatabasePort: !GetAtt 'RedshiftClusterStack.Outputs.RedshiftPort'
-        RedshiftHost: !GetAtt 'RedshiftClusterStack.Outputs.RedshiftHost'
+        RedshiftDatabasePort: !GetAtt 
+          - RedshiftClusterStack
+          - Outputs.RedshiftPort
+        RedshiftHost: !GetAtt 
+          - RedshiftClusterStack
+          - Outputs.RedshiftHost
         RedshiftPassword: !Ref 'RedshiftPassword'
         RedshiftUsername: !Ref 'RedshiftUsername'
         RegCity: !Ref 'RegCity'
@@ -706,7 +750,7 @@ Resources:
     Condition: HostedZoneIsSpecifiedCondition
     Properties:
       TemplateURL: !Sub
-        - https://$${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}templates/route53-recordsets.template
+        - https://$${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}templates/iam-roles.template
         - S3Region: !If [UsingDefaultBucket, !Ref 'AWS::Region', !Ref QSS3BucketRegion]
           S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
       Parameters:
@@ -717,11 +761,36 @@ Resources:
         HostedZoneName: !Ref 'HostedZoneName'
         BastionEIP: !Ref 'BastionEIP'
         RDGWElasticIP: !Ref 'RDGWElasticIP'
-        TableauServerPublicDnsName: !GetAtt 'TableauServerStack.Outputs.PublicDnsName'
-        TableauServerPrivateDnsName: !GetAtt 'TableauServerStack.Outputs.PrivateDnsName'
-        SqlWorkerPrivateDnsName: !GetAtt 'SQLWorkerStack.Outputs.PrivateDnsName'
-        RedshiftPrivateDnsName: !GetAtt 'RedshiftClusterStack.Outputs.RedshiftHost'
-        RDSPrivateDnsName: !GetAtt 'RDSInstanceStack.Outputs.DBAddress'
+        TableauServerPublicName:
+          Description: Convenient Name for TableauServer Public Access
+          Value: !If
+            - HostedZoneIsSpecifiedCondition
+            - !GetAtt 'DnsRecordSetStack.Outputs.TableauServerPublicName'
+            - !GetAtt 'TableauServerStack.Outputs.PublicDnsName'
+        TableauServerPrivateName:
+          Description: Convenient Name for TableauServer Private Access
+          Value: !If
+            - HostedZoneIsSpecifiedCondition
+            - !GetAtt 'DnsRecordSetStack.Outputs.TableauServerPrivateName'
+            - !GetAtt 'TableauServerStack.Outputs.PrivateDnsName'
+        SqlWorkerPrivateName:
+          Description: Convenient Name for SQL Worker Private Access
+          Value: !If
+            - HostedZoneIsSpecifiedCondition
+            - !GetAtt 'DnsRecordSetStack.Outputs.SqlWorkerPrivateName'
+            - !GetAtt 'SQLWorkerStack.Outputs.PrivateDnsName'
+        RedshiftPrivateName:
+          Description: Convenient Name for Redshift Private Access
+          Value: !If
+            - HostedZoneIsSpecifiedCondition
+            - !GetAtt 'DnsRecordSetStack.Outputs.RedshiftPrivateName'
+            - !GetAtt 'RedshiftClusterStack.Outputs.RedshiftHost'
+        RDSPrivateName:
+          Description: Convenient Name for Postgres RDS Private Access
+          Value: !If
+            - HostedZoneIsSpecifiedCondition
+            - !GetAtt 'DnsRecordSetStack.Outputs.RDSPrivateName'
+            - !GetAtt 'RDSInstanceStack.Outputs.DBAddress'
 Outputs:
   TableauServerURL:
     Description: URL through which Tableau Server can be accessed.

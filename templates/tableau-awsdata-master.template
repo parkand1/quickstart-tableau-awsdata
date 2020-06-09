@@ -701,13 +701,19 @@ Resources:
         BastionBanner: !Ref 'BastionBanner'
         EnableBanner: 'true'
         KeyPairName: !Ref 'KeyPairName'
-        PublicSubnet1ID: !GetAtt 'VPCStack.Outputs.PublicSubnet1ID'
-        PublicSubnet2ID: !GetAtt 'VPCStack.Outputs.PublicSubnet2ID'
+        PublicSubnet1ID: !GetAtt 
+          - VPCStack
+          - Outputs.PublicSubnet1ID
+        PublicSubnet2ID: !GetAtt 
+          - VPCStack
+          - Outputs.PublicSubnet2ID
         QSS3BucketName: !Ref QSS3BucketName
         QSS3BucketRegion: !Ref QSS3BucketRegion
         QSS3KeyPrefix: !Sub ${QSS3KeyPrefix}submodules/quickstart-linux-bastion/
         RemoteAccessCIDR: !Ref 'BastionInboundCIDR'
-        VPCID: !GetAtt 'VPCStack.Outputs.VPCID'
+        VPCID: !GetAtt 
+          - VPCStack
+          - Outputs.VPCID
         EnableTCPForwarding: 'true'
   RDGWStack:
     Type: AWS::CloudFormation::Stack
@@ -722,8 +728,12 @@ Resources:
         AdminUser: !Ref 'RDGWAdminUser'
         KeyPairName: !Ref 'KeyPairName'
         DomainDNSName: !Ref 'DomainDNSName'
-        PublicSubnet1ID: !GetAtt 'VPCStack.Outputs.PublicSubnet1ID'
-        PublicSubnet2ID: !GetAtt 'VPCStack.Outputs.PublicSubnet2ID'
+        PublicSubnet1ID: !GetAtt 
+          - VPCStack
+          - Outputs.PublicSubnet1ID
+        PublicSubnet2ID: !GetAtt 
+          - VPCStack
+          - Outputs.PublicSubnet2ID
         QSS3BucketName: !Ref QSS3BucketName
         QSS3BucketRegion: !Ref QSS3BucketRegion            
         QSS3KeyPrefix: !Sub '${QSS3KeyPrefix}submodules/quickstart-microsoft-rdgateway/'
@@ -732,7 +742,9 @@ Resources:
           - NoRDGWInboundCIDRCondition
           - !GetAtt 'VPCStack.Outputs.VPCCIDR'
           - !Ref 'RDGWInboundCIDR'
-        VPCID: !GetAtt 'VPCStack.Outputs.VPCID'
+        VPCID: !GetAtt 
+          - VPCStack
+          - Outputs.VPCID
   TableauAwsdataStack:
     DependsOn: VPCStack
     Type: AWS::CloudFormation::Stack
@@ -742,7 +754,9 @@ Resources:
         - S3Region: !If [UsingDefaultBucket, !Ref 'AWS::Region', !Ref QSS3BucketRegion]
           S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
       Parameters:
-        BastionEIP: !GetAtt 'LinuxBastionStack.Outputs.EIP1'
+        BastionEIP: !GetAtt 
+          - LinuxBastionStack
+          - Outputs.EIP1
         ContentAdminPassword: !Ref 'ContentAdminPassword'
         ContentAdminUser: !Ref 'ContentAdminUser'
         DatasetS3BucketName: !Ref 'DatasetS3BucketName'
@@ -751,14 +765,24 @@ Resources:
         HostedZoneName: !Ref 'HostedZoneName'
         KeyPairName: !Ref 'KeyPairName'
         LoadDataset: !Ref 'LoadDataset'
-        PrivateSubnet1ID: !GetAtt 'VPCStack.Outputs.PrivateSubnet1AID'
-        PrivateSubnet2ID: !GetAtt 'VPCStack.Outputs.PrivateSubnet2AID'
-        PublicSubnet1ID: !GetAtt 'VPCStack.Outputs.PublicSubnet1ID'
-        PublicSubnet2ID: !GetAtt 'VPCStack.Outputs.PublicSubnet2ID'
+        PrivateSubnet1ID: !GetAtt 
+          - VPCStack
+          - Outputs.PrivateSubnet1AID
+        PrivateSubnet2ID: !GetAtt 
+          - VPCStack
+          - Outputs.PrivateSubnet2AID
+        PublicSubnet1ID: !GetAtt 
+          - VPCStack
+          - Outputs.PublicSubnet1ID
+        PublicSubnet2ID: !GetAtt 
+          - VPCStack
+          - Outputs.PublicSubnet2ID
         QSS3BucketName: !Ref 'QSS3BucketName'
         QSS3BucketRegion: !Ref QSS3BucketRegion
         QSS3KeyPrefix: !Ref 'QSS3KeyPrefix'
-        RDGWElasticIP: !GetAtt 'RDGWStack.Outputs.EIP1'
+        RDGWElasticIP: !GetAtt 
+          - RDGWStack
+          - Outputs.EIP1
         RDSAllocatedStorage: !Ref 'RDSAllocatedStorage'
         RDSDatabaseName: !Ref 'RDSDatabaseName'
         RDSDatabasePort: !Ref 'RDSDatabasePort'
@@ -800,30 +824,50 @@ Resources:
           - !GetAtt 'VPCStack.Outputs.VPCCIDR'
           - !Ref 'TableauServerInboundCIDR'
         TableauServerLicenseKey: !Ref 'TableauServerLicenseKey'
-        VPCCIDR: !GetAtt 'VPCStack.Outputs.VPCCIDR'
-        VPCID: !GetAtt 'VPCStack.Outputs.VPCID'
+        VPCCIDR: !GetAtt 
+          - VPCStack
+          - Outputs.VPCCIDR
+        VPCID: !GetAtt 
+          - VPCStack
+          - Outputs.VPCID
 Outputs:
   TableauServerURL:
     Description: URL through which Tableau Server can be accessed.
-    Value: !GetAtt 'TableauAwsdataStack.Outputs.TableauServerURL'
+    Value: !GetAtt 
+      - TableauAwsdataStack
+      - Outputs.TableauServerURL
   BastionPublicName:
     Description: Convenient Name for Bastion Public Access
-    Value: !GetAtt 'TableauAwsdataStack.Outputs.BastionPublicName'
+    Value: !GetAtt 
+      - TableauAwsdataStack
+      - Outputs.BastionPublicName
   RDGWPublicName:
     Description: Convenient Name for RDGW Public Access
-    Value: !GetAtt 'TableauAwsdataStack.Outputs.RDGWPublicName'
+    Value: !GetAtt 
+      - TableauAwsdataStack
+      - Outputs.RDGWPublicName
   TableauServerPublicName:
     Description: Convenient Name for TableauServer Public Access
-    Value: !GetAtt 'TableauAwsdataStack.Outputs.TableauServerPublicName'
+    Value: !GetAtt 
+    - TableauAwsdataStack
+    - Outputs.TableauServerPublicName
   TableauServerPrivateName:
     Description: Convenient Name for TableauServer Private Access
-    Value: !GetAtt 'TableauAwsdataStack.Outputs.TableauServerPrivateName'
+    Value: !GetAtt 
+    - TableauAwsdataStack
+    - Outputs.TableauServerPrivateName
   SqlWorkerPrivateName:
     Description: Convenient Name for SqlWorker Private Access
-    Value: !GetAtt 'TableauAwsdataStack.Outputs.SqlWorkerPrivateName'
+    Value: !GetAtt 
+    - TableauAwsdataStack
+    - Outputs.SqlWorkerPrivateName
   RedshiftPrivateName:
     Description: Convenient Name for Redshift Private Access
-    Value: !GetAtt 'TableauAwsdataStack.Outputs.RedshiftPrivateName'
+    Value: !GetAtt 
+    - TableauAwsdataStack
+    - Outputs.RedshiftPrivateName
   RDSPrivateName:
     Description: Convenient Name for Postgres RDS Private Access
-    Value: !GetAtt 'TableauAwsdataStack.Outputs.RDSPrivateName'
+    Value: !GetAtt 
+    - TableauAwsdataStack
+    - Outputs.RDSPrivateName
