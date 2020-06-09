@@ -98,7 +98,6 @@ Resources:
         - !Ref 'ClusterSubnetID'
   RedshiftCluster:
     Type: AWS::Redshift::Cluster
-    DependsOn: ClusterSubnetGroup
     Properties:
       ClusterType: !Ref 'ClusterType'
       NumberOfNodes: !If
