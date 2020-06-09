@@ -223,7 +223,6 @@ Resources:
       Timeout: '3600'
   TableauWindowsServer:
     Type: AWS::EC2::Instance
-    DependsOn: InstanceSecurityGroup
     Metadata:
       AWS::CloudFormation::Authentication:
         S3Access:

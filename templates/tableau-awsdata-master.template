@@ -689,7 +689,6 @@ Resources:
           - VPCCIDR
   LinuxBastionStack:
     Type: AWS::CloudFormation::Stack
-    DependsOn: VPCStack
     Properties:
       TemplateURL: !Sub
         - 'https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}submodules/quickstart-linux-bastion/templates/linux-bastion.template'
@@ -717,7 +716,6 @@ Resources:
         EnableTCPForwarding: 'true'
   RDGWStack:
     Type: AWS::CloudFormation::Stack
-    DependsOn: VPCStack
     Properties:
       TemplateURL: !Sub
        - 'https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}submodules/quickstart-microsoft-rdgateway/templates/rdgw-standalone.template'
@@ -746,7 +744,6 @@ Resources:
           - VPCStack
           - Outputs.VPCID
   TableauAwsdataStack:
-    DependsOn: VPCStack
     Type: AWS::CloudFormation::Stack
     Properties:
       TemplateURL: !Sub

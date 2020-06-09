@@ -22,7 +22,6 @@ Metadata:
           - PrivateSubnet1ID
           - PrivateSubnet2ID
           - PublicSubnet1ID
-          - PublicSubnet2ID
           - RDSInboundCIDR
           - RedshiftInboundCIDR
           - TableauServerInboundCIDR
@@ -111,8 +110,6 @@ Metadata:
         default: Existing VPC Private Subnet 2 ID
       PublicSubnet1ID:
         default: Existing VPC Public Subnet1 ID
-      PublicSubnet2ID:
-        default: Existing VPC Public Subnet2 ID
       QSS3BucketName:
         default: Quick Start S3 Bucket Name
       QSS3KeyPrefix:
@@ -177,8 +174,6 @@ Metadata:
         default: Reg Zip
       RootStackName:
         default: Stack Name
-      SourceDataS3Region:
-        default: Source Data S3 Region
       SqlWorkerInstanceType:
         default: SQL Worker Instance Type
       TableauServerInboundCIDR:
@@ -264,9 +259,6 @@ Parameters:
     Type: AWS::EC2::Subnet::Id
   PublicSubnet1ID:
     Description: ID of the public subnet 1 in Availability Zone 1 (e.g., subnet-a0246dcd)
-    Type: AWS::EC2::Subnet::Id
-  PublicSubnet2ID:
-    Description: ID of the public subnet 2 in Availability Zone 2 (e.g., subnet-a0246dcd)
     Type: AWS::EC2::Subnet::Id
   QSS3BucketName:
     AllowedPattern: ^[0-9a-zA-Z]+([0-9a-zA-Z-]*[0-9a-zA-Z])*$
@@ -611,9 +603,6 @@ Resources:
         MultiAZDatabase: !Ref 'RDSMultiAZ'
   SQLWorkerStack:
     Type: AWS::CloudFormation::Stack
-    DependsOn:
-      - RedshiftClusterStack
-      - RDSInstanceStack
     Properties:
       TemplateURL: !Sub
         - https://$${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}templates/sql-worker.template
@@ -742,11 +731,6 @@ Resources:
         VpcId: !Ref 'VPCID'
   DnsRecordSetStack:
     Type: AWS::CloudFormation::Stack
-    DependsOn:
-      - RedshiftClusterStack
-      - RDSInstanceStack
-      - SQLWorkerStack
-      - TableauServerStack
     Condition: HostedZoneIsSpecifiedCondition
     Properties:
       TemplateURL: !Sub
