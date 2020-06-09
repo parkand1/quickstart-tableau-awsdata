@@ -32,12 +32,6 @@ Parameters:
   IAMRoleEc2Worker:
     Description: IAM role to allows EC2 access to S3 and Redshift role association
     Type: String
-  IAMRoleEc2WorkerArn:
-    Description: ARN of IAM role to allows EC2 access to S3 and Redshift role association
-    Type: String
-  IAMRoleRedshiftWorker:
-    Description: IAM role to allows Redshift access to S3
-    Type: String
   IAMRoleRedshiftWorkerArn:
     Description: ARN of IAM role to allows Redshift access to S3
     Type: String
@@ -95,11 +89,9 @@ Parameters:
       - d2.2xlarge
       - d2.4xlarge
       - d2.8xlarge
-      - hi1.4xlarge
-      - hs1.8xlarge
       - cr1.8xlarge
       - cc2.8xlarge
-      - cg1.4xlarge
+   
     ConstraintDescription: must be a valid EC2 instance type.
     Default: t2.small
     Description: SQL Worker EC2 instance type
@@ -126,10 +118,6 @@ Parameters:
     Description: S3 bucket name for the Quick Start assets. Quick Start bucket name
       can include numbers, lowercase letters, uppercase letters, and hyphens (-).
       It cannot start or end with a hyphen (-).
-    Type: String
-  QSS3BucketRegion:
-    Default: 'us-east-1'
-    Description: 'The AWS Region where the Quick Start S3 bucket (QSS3BucketName) is hosted. When using your own bucket, you must specify this value.'
     Type: String
   QSS3KeyPrefix:
     AllowedPattern: ^[0-9a-zA-Z-/]*$
