@@ -31,9 +31,9 @@ Parameters:
       It cannot start or end with a hyphen (-).
     Type: String
   QSS3BucketRegion:
-    Default: 'us-east-1'
-    Description: 'The AWS Region where the Quick Start S3 bucket (QSS3BucketName) is hosted. When using your own bucket, you must specify this value.'
-    Type: String
+      Default: 'us-east-1'
+      Description: 'The AWS Region where the Quick Start S3 bucket (QSS3BucketName) is hosted. When using your own bucket, you must specify this value.'
+      Type: String 
   QSS3KeyPrefix:
     AllowedPattern: ^[0-9a-zA-Z-/]*$
     ConstraintDescription: Quick Start key prefix can include numbers, lowercase letters,
@@ -44,7 +44,7 @@ Parameters:
       forward slash (/).
     Type: String
 Conditions:
-    UsingDefaultBucket: !Equals [!Ref QSS3BucketName, 'aws-quickstart']
+  UsingDefaultBucket: !Equals [!Ref QSS3BucketName, 'aws-quickstart']
 Resources:
   IAMRoleRedshiftWorker:
     Type: AWS::IAM::Role
@@ -76,11 +76,21 @@ Resources:
               - Action:
                   - s3:ListBucket
                 Effect: Allow
-                Resource: !Sub 'arn:${Partition}:s3:::${DatasetS3BucketName}'
+                Resource: !Sub
+                  - arn:${Partition}:s3:::${DatasetS3BucketName}
+                  - Partition: !If
+                      - GovCloudCondition
+                      - aws-us-gov
+                      - aws
               - Action:
                   - s3:GetObject
                 Effect: Allow
-                Resource: !Sub 'arn:${Partition}:s3:::${DatasetS3BucketName}/${DatasetS3KeyPrefix}*'
+                Resource: !Sub
+                  - arn:${Partition}:s3:::${DatasetS3BucketName}/${DatasetS3KeyPrefix}*
+                  - Partition: !If
+                      - GovCloudCondition
+                      - aws-us-gov
+                      - aws
   IAMRoleEc2Worker:
     Type: AWS::IAM::Role
     DependsOn: IAMRoleRedshiftWorker
@@ -101,7 +111,9 @@ Resources:
             Statement:
               - Action:
                   - s3:GetObject
-                Resource: !Sub 'arn:${Partition}:s3:::${QSS3BucketName}/${QSS3KeyPrefix}*'
+                Resource: !Sub
+                  - arn:${AWS::Partition}:s3:::${S3Bucket}/${QSS3KeyPrefix}*
+                  - S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
                 Effect: Allow
         - PolicyName: QuickstartEc2S3RedshiftAccess
           PolicyDocument:
@@ -118,11 +130,21 @@ Resources:
                 Resource: '*'
               - Action: s3:ListBucket
                 Effect: Allow
-                Resource: !Sub 'arn:${Partition}:s3:::${DatasetS3BucketName}'
+                Resource: !Sub
+                  - arn:${Partition}:s3:::${DatasetS3BucketName}
+                  - Partition: !If
+                      - GovCloudCondition
+                      - aws-us-gov
+                      - aws
               - Action:
                   - s3:GetObject
                 Effect: Allow
-                Resource: !Sub 'arn:${Partition}:s3:::${DatasetS3BucketName}/${DatasetS3KeyPrefix}*'
+                Resource: !Sub
+                  - arn:${Partition}:s3:::${DatasetS3BucketName}/${DatasetS3KeyPrefix}*
+                  - Partition: !If
+                      - GovCloudCondition
+                      - aws-us-gov
+                      - aws
   InstanceProfileEc2Worker:
     Type: AWS::IAM::InstanceProfile
     Properties:
