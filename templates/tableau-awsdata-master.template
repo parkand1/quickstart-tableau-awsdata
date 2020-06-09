@@ -87,7 +87,7 @@ Metadata:
           default: AWS Quick Start Configuration
         Parameters:
           - QSS3BucketName
-          - QSS3KeyPrefix
+          - QSS3BucketRegion
           - QSS3KeyPrefix
           - LoadDataset
           - DatasetS3BucketName
