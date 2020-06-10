@@ -32,10 +32,9 @@ tests:
       DatasetS3Region: us-east-1
       DomainDNSName: example.com
       HostedZoneName: <NONE>
-      KeyPairName: cikey
+      KeyPairName: $[alfred_getkeypair]
       LoadDataset: 'true'
       QSS3BucketName: $[taskcat_autobucket]
-      QSS3BucketRegion: $[taskcat_current_region]
       RDGWAdminPassword: $[alfred_genpass_16]
       RDGWAdminUser: admin
       RDGWInboundCIDR: 10.0.0.0/16
@@ -90,10 +89,9 @@ tests:
       DatasetS3Region: us-east-1
       DomainDNSName: example.com
       HostedZoneName: <NONE>
-      KeyPairName: cikey
+      KeyPairName: $[alfred_getkeypair]
       LoadDataset: 'false'
       QSS3BucketName: $[taskcat_autobucket]
-      QSS3BucketRegion: $[taskcat_current_region]
       RDGWAdminPassword: $[alfred_genpass_16]
       RDGWAdminUser: admin
       RDGWInboundCIDR: 10.0.0.0/16
@@ -131,6 +129,6 @@ tests:
       TableauServerLicenseKey: ''
       VPCDefinition: QuickstartDefault
     regions:
-    - us-west-2
+    - us-east-2
     s3_bucket: ''
     template: templates/tableau-awsdata-master.template
