@@ -689,7 +689,7 @@ Resources:
         KeyPairName: !Ref 'KeyPairName'
         LoadDataset: !Ref 'LoadDataset'
         QSS3BucketName: !Ref 'QSS3BucketName'
-        QSS3BucketRegion: !Ref: 'QSS3BucketRegion'
+        QSS3BucketRegion: !Ref 'QSS3BucketRegion'
         QSS3KeyPrefix: !Ref 'QSS3KeyPrefix'
         RDSDatabaseName: !Ref 'RDSDatabaseName'
         RDSDatabasePort: !GetAtt 
