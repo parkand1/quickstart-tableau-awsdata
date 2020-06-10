@@ -119,6 +119,10 @@ Parameters:
       can include numbers, lowercase letters, uppercase letters, and hyphens (-).
       It cannot start or end with a hyphen (-).
     Type: String
+  QSS3BucketRegion:
+    Default: 'us-east-1'
+    Description: 'The AWS Region where the Quick Start S3 bucket (QSS3BucketName) is hosted. When using your own bucket, you must specify this value.'
+    Type: String
   QSS3KeyPrefix:
     AllowedPattern: ^[0-9a-zA-Z-/]*$
     ConstraintDescription: Quick Start key prefix can include numbers, lowercase letters,
@@ -304,7 +308,7 @@ Resources:
               group: root
             /home/ec2-user/setup-redshift.sql:
               source: !Sub
-                - https://${DatasetS3BucketName}.${QSS3Region}.amazonaws.com/${DatasetS3KeyPrefix}sql/setup-redshift.sql
+                - https://${DatasetS3BucketName}.${QSS3Region}.${DatasetS3Region}.${AWS::URLSuffix}/${DatasetS3KeyPrefix}sql/setup-redshift.sql
                 - QSS3Region: !If
                     - GovCloudCondition
                     - s3-us-gov-west-1
@@ -314,12 +318,11 @@ Resources:
               group: root
               authentication: S3Access
             /home/ec2-user/interpolate-setup-redshift-sql.sh:
-              source: !Sub
-                - https://${QSS3BucketName}.${QSS3Region}.amazonaws.com/${QSS3KeyPrefix}scripts/interpolate-setup-redshift-sql.sh
-                - QSS3Region: !If
-                    - GovCloudCondition
-                    - s3-us-gov-west-1
-                    - s3
+              source:
+                !Sub
+                  - https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}scripts/interpolate-setup-redshift-sql.sh
+                  - S3Region: !If [UsingDefaultBucket, !Ref 'AWS::Region', !Ref QSS3BucketRegion]
+                    S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
               mode: '000700'
               owner: root
               group: root
@@ -398,7 +401,7 @@ Resources:
               group: root
             /home/ec2-user/setup-postgres.sql:
               source: !Sub
-                - https://${DatasetS3BucketName}.${QSS3Region}.amazonaws.com/${DatasetS3KeyPrefix}sql/setup-postgres.sql
+                - https://${DatasetS3BucketName}.${QSS3Region}.${DatasetS3Region}.${AWS::URLSuffix}/${DatasetS3KeyPrefix}sql/setup-postgres.sql
                 - QSS3Region: !If
                     - GovCloudCondition
                     - s3-us-gov-west-1
@@ -408,19 +411,18 @@ Resources:
               group: root
               authentication: S3Access
             /home/ec2-user/interpolate-setup-postgres-sql.sh:
-              source: !Sub
-                - https://${QSS3BucketName}.${QSS3Region}.amazonaws.com/${QSS3KeyPrefix}scripts/interpolate-setup-postgres-sql.sh
-                - QSS3Region: !If
-                    - GovCloudCondition
-                    - s3-us-gov-west-1
-                    - s3
+              source:
+                !Sub
+                  - https://${S3Bucket}.s3.${S3Region}.${DatasetS3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}scripts/interpolate-setup-postgres-sql.sh
+                  - S3Region: !If [UsingDefaultBucket, !Ref 'AWS::Region', !Ref QSS3BucketRegion]
+                    S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
               mode: '000700'
               owner: root
               group: root
               authentication: S3Access
             /home/ec2-user/create-aggregates.sql:
               source: !Sub
-                - https://${DatasetS3BucketName}.${QSS3Region}.amazonaws.com/${DatasetS3KeyPrefix}sql/create-aggregates.sql
+                - https://${DatasetS3BucketName}.${QSS3Region}.${DatasetS3Region}.${AWS::URLSuffix}/${DatasetS3KeyPrefix}sql/create-aggregates.sql
                 - QSS3Region: !If
                     - GovCloudCondition
                     - s3-us-gov-west-1
@@ -431,7 +433,7 @@ Resources:
               authentication: S3Access
             /home/ec2-user/publish-aggregates.sql:
               source: !Sub
-                - https://${DatasetS3BucketName}.${QSS3Region}.amazonaws.com/${DatasetS3KeyPrefix}sql/publish-aggregates.sql
+                - https://${DatasetS3BucketName}.${QSS3Region}.${DatasetS3Region}.${AWS::URLSuffix}/${DatasetS3KeyPrefix}sql/publish-aggregates.sql
                 - QSS3Region: !If
                     - GovCloudCondition
                     - s3-us-gov-west-1
