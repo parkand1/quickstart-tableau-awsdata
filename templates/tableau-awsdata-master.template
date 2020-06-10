@@ -33,6 +33,7 @@ Metadata:
         Parameters:
           - BastionInstanceType
           - BastionAMIOS
+          - EnableBanner
           - BastionBanner
       - Label:
           default: Remote Desktop Gateway Configuration
@@ -116,6 +117,8 @@ Metadata:
         default: Dataset S3 Region
       DomainDNSName:
         default: Domain DNS Name
+      EnableBanner:
+        default: Enable bastion banner
       HostedZoneName:
         default: Hosted Zone Name
       KeyPairName:
@@ -279,6 +282,14 @@ Parameters:
     Description: Fully qualified domain name (FQDN) e.g. example.com
     MaxLength: '25'
     MinLength: '3'
+    Type: String
+  EnableBanner:
+    AllowedValues:
+      - 'true'
+      - 'false'
+    Default: 'false'
+    Description: To include a banner to be displayed when connecting via SSH to the
+      bastion, choose true.
     Type: String
   HostedZoneName:
     Default: <NONE>
@@ -698,7 +709,7 @@ Resources:
         BastionInstanceType: !Ref 'BastionInstanceType'
         BastionAMIOS: !Ref 'BastionAMIOS'
         BastionBanner: !Ref 'BastionBanner'
-        EnableBanner: 'true'
+        EnableBanner: !Ref 'EnableBanner'
         KeyPairName: !Ref 'KeyPairName'
         PublicSubnet1ID: !GetAtt 
           - VPCStack
