@@ -4,7 +4,10 @@ project:
   package_lambda: false
   regions:
   - ap-northeast-1
+<<<<<<< HEAD
   - ap-northeast-2
+=======
+>>>>>>> a657561a5e27cdee2aa83165568fa6b27522c826
   - ap-south-1
   - ap-southeast-1
   - ap-southeast-2
@@ -31,11 +34,18 @@ tests:
       DatasetS3KeyPrefix: tableau-awsdata/synthetic-store-sales/v1/
       DatasetS3Region: us-east-1
       DomainDNSName: example.com
+<<<<<<< HEAD
       EnableBanner: 'false'
+=======
+>>>>>>> a657561a5e27cdee2aa83165568fa6b27522c826
       HostedZoneName: <NONE>
       KeyPairName: $[alfred_getkeypair]
       LoadDataset: 'true'
       QSS3BucketName: $[taskcat_autobucket]
+<<<<<<< HEAD
+=======
+      QSS3BucketRegion: $[taskcat_current_region]
+>>>>>>> a657561a5e27cdee2aa83165568fa6b27522c826
       RDGWAdminPassword: $[alfred_genpass_16]
       RDGWAdminUser: admin
       RDGWInboundCIDR: 10.0.0.0/16
@@ -52,7 +62,11 @@ tests:
       RedshiftDatabaseName: quickstart
       RedshiftDatabasePort: '5439'
       RedshiftInboundCIDR: 10.0.0.0/16
+<<<<<<< HEAD
       RedshiftNodeType: dc1.large
+=======
+      RedshiftNodeType: dc2.large
+>>>>>>> a657561a5e27cdee2aa83165568fa6b27522c826
       RedshiftNumberOfNodes: '2'
       RedshiftPassword: $[alfred_genpass_16]
       RedshiftUsername: redshift
@@ -76,6 +90,7 @@ tests:
     - us-west-2
     s3_bucket: ''
     template: templates/tableau-awsdata-master.template
+<<<<<<< HEAD
   tableau-no-dataset:
     parameters:
       AvailabilityZones: $[alfred_getaz_2]
@@ -133,3 +148,5 @@ tests:
     - us-east-2
     s3_bucket: ''
     template: templates/tableau-awsdata-master.template
+=======
+>>>>>>> a657561a5e27cdee2aa83165568fa6b27522c826

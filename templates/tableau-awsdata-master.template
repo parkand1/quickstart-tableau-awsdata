@@ -88,7 +88,14 @@ Metadata:
           default: AWS Quick Start Configuration
         Parameters:
           - QSS3BucketName
+<<<<<<< HEAD
           - QSS3BucketRegion
+=======
+<<<<<<< HEAD
+          - QSS3BucketRegion
+=======
+>>>>>>> flipped tableau-awsdata-master.template to yaml
+>>>>>>> a657561a5e27cdee2aa83165568fa6b27522c826
           - QSS3KeyPrefix
           - LoadDataset
           - DatasetS3BucketName
@@ -117,8 +124,11 @@ Metadata:
         default: Dataset S3 Region
       DomainDNSName:
         default: Domain DNS Name
+<<<<<<< HEAD
       EnableBanner:
         default: Enable bastion banner
+=======
+>>>>>>> a657561a5e27cdee2aa83165568fa6b27522c826
       HostedZoneName:
         default: Hosted Zone Name
       KeyPairName:
@@ -126,9 +136,18 @@ Metadata:
       LoadDataset:
         default: Load dataset
       QSS3BucketName:
+<<<<<<< HEAD
         default: Quick Start S3 Bucket Namei
       QSS3BucketRegion:
         default: Quick Start S3 bucket region 
+=======
+        default: Quick Start S3 Bucket Name
+<<<<<<< HEAD
+      QSS3BucketRegion:
+        default: Quick Start S3 Bucket Region
+=======
+>>>>>>> flipped tableau-awsdata-master.template to yaml
+>>>>>>> a657561a5e27cdee2aa83165568fa6b27522c826
       QSS3KeyPrefix:
         default: Quick Start S3 Key Prefix
       RDGWAdminPassword:
@@ -283,6 +302,7 @@ Parameters:
     MaxLength: '25'
     MinLength: '3'
     Type: String
+<<<<<<< HEAD
   EnableBanner:
     AllowedValues:
       - 'true'
@@ -291,6 +311,8 @@ Parameters:
     Description: To include a banner to be displayed when connecting via SSH to the
       bastion, choose true.
     Type: String
+=======
+>>>>>>> a657561a5e27cdee2aa83165568fa6b27522c826
   HostedZoneName:
     Default: <NONE>
     Description: >-
@@ -322,10 +344,19 @@ Parameters:
       can include numbers, lowercase letters, uppercase letters, and hyphens (-).
       It cannot start or end with a hyphen (-).
     Type: String
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> a657561a5e27cdee2aa83165568fa6b27522c826
   QSS3BucketRegion:
     Default: 'us-east-1'
     Description: 'The AWS Region where the Quick Start S3 bucket (QSS3BucketName) is hosted. When using your own bucket, you must specify this value.'
     Type: String
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> flipped tableau-awsdata-master.template to yaml
+>>>>>>> a657561a5e27cdee2aa83165568fa6b27522c826
   QSS3KeyPrefix:
     AllowedPattern: ^[0-9a-zA-Z-/]*$
     ConstraintDescription: Quick Start key prefix can include numbers, lowercase letters,
@@ -474,14 +505,35 @@ Parameters:
     Type: String
   RedshiftNodeType:
     AllowedValues:
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> a657561a5e27cdee2aa83165568fa6b27522c826
       - ds2.xlarge
       - ds2.8xlarge
       - dc1.large
       - dc1.8xlarge
       - dc2.large
       - dc2.8xlarge
+<<<<<<< HEAD
       - ra3.4xlarge 
       - ra3.16xlarge
+=======
+      - ra3.4xlarge
+      - ra3.16xlarge
+=======
+      - dw1.xlarge
+      - dw1.8xlarge
+      - dw2.large
+      - dw2.8xlarge
+      - dc1.large
+      - dc1.8xlarge
+      - ds1.xlarge
+      - ds1.8xlarge
+      - ds2.xlarge
+      - ds2.8xlarge
+>>>>>>> flipped tableau-awsdata-master.template to yaml
+>>>>>>> a657561a5e27cdee2aa83165568fa6b27522c826
     ConstraintDescription: must be a valid RedShift node type.
     Default: dc1.large
     Description: The node type to be provisioned for the redshift cluster
@@ -600,7 +652,19 @@ Conditions:
   NoTableauServerInboundCIDRCondition: !Equals
     - !Ref 'TableauServerInboundCIDR'
     - <VPCCIDR>
+<<<<<<< HEAD
   UsingDefaultBucket: !Equals [!Ref QSS3BucketName, 'aws-quickstart']
+=======
+<<<<<<< HEAD
+  UsingDefaultBucket: !Equals 
+    - !Ref 'QSS3BucketName'
+    - <VPCCIDR>
+=======
+  GovCloudCondition: !Equals
+    - !Ref 'AWS::Region'
+    - us-gov-west-1
+>>>>>>> flipped tableau-awsdata-master.template to yaml
+>>>>>>> a657561a5e27cdee2aa83165568fa6b27522c826
 Mappings:
   VPCDefinitions:
     QuickstartDefault:
@@ -624,11 +688,26 @@ Resources:
   VPCStack:
     Type: AWS::CloudFormation::Stack
     Properties:
+<<<<<<< HEAD
       TemplateURL:
         !Sub
           - 'https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}submodules/quickstart-aws-vpc/templates/aws-vpc.template'
           - S3Region: !If [UsingDefaultBucket, !Ref 'AWS::Region', !Ref QSS3BucketRegion]
             S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
+=======
+      TemplateURL: !Sub
+<<<<<<< HEAD
+        - 'https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}submodules/quickstart-aws-vpc/templates/aws-vpc.template'
+        - S3Region: !If [UsingDefaultBucket, !Ref 'AWS::Region', !Ref QSS3BucketRegion]
+          S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
+=======
+        - https://${QSS3BucketName}.${QSS3Region}.amazonaws.com/${QSS3KeyPrefix}submodules/quickstart-aws-vpc/templates/aws-vpc.template
+        - QSS3Region: !If
+            - GovCloudCondition
+            - s3-us-gov-west-1
+            - s3
+>>>>>>> flipped tableau-awsdata-master.template to yaml
+>>>>>>> a657561a5e27cdee2aa83165568fa6b27522c826
       Parameters:
         KeyPairName: !Ref 'KeyPairName'
         AvailabilityZones: !Join
@@ -700,15 +779,33 @@ Resources:
           - VPCCIDR
   LinuxBastionStack:
     Type: AWS::CloudFormation::Stack
+<<<<<<< HEAD
     Properties:
       TemplateURL: !Sub
         - 'https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}submodules/quickstart-linux-bastion/templates/linux-bastion.template'
         - S3Region: !If [UsingDefaultBucket, !Ref 'AWS::Region', !Ref QSS3BucketRegion]
           S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
+=======
+    DependsOn: VPCStack
+    Properties:
+      TemplateURL: !Sub
+<<<<<<< HEAD
+        - 'https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}submodules/quickstart-linux-bastion/templates/linux-bastion.template'
+        - S3Region: !If [UsingDefaultBucket, !Ref 'AWS::Region', !Ref QSS3BucketRegion]
+          S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
+=======
+        - https://${QSS3BucketName}.${QSS3Region}.amazonaws.com/${QSS3KeyPrefix}submodules/quickstart-linux-bastion/templates/linux-bastion.template
+        - QSS3Region: !If
+            - GovCloudCondition
+            - s3-us-gov-west-1
+            - s3
+>>>>>>> flipped tableau-awsdata-master.template to yaml
+>>>>>>> a657561a5e27cdee2aa83165568fa6b27522c826
       Parameters:
         BastionInstanceType: !Ref 'BastionInstanceType'
         BastionAMIOS: !Ref 'BastionAMIOS'
         BastionBanner: !Ref 'BastionBanner'
+<<<<<<< HEAD
         EnableBanner: !Ref 'EnableBanner'
         KeyPairName: !Ref 'KeyPairName'
         PublicSubnet1ID: !GetAtt 
@@ -732,11 +829,43 @@ Resources:
        - 'https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}submodules/quickstart-microsoft-rdgateway/templates/rdgw-standalone.template'
        - S3Region: !If [UsingDefaultBucket, !Ref 'AWS::Region', !Ref QSS3BucketRegion]
          S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
+=======
+        EnableBanner: 'true'
+        KeyPairName: !Ref 'KeyPairName'
+        PublicSubnet1ID: !GetAtt 'VPCStack.Outputs.PublicSubnet1ID'
+        PublicSubnet2ID: !GetAtt 'VPCStack.Outputs.PublicSubnet2ID'
+        QSS3BucketName: !Ref 'QSS3BucketName'
+<<<<<<< HEAD
+        QSS3BucketRegion: !Ref 'QSS3BucketRegion'
+=======
+>>>>>>> flipped tableau-awsdata-master.template to yaml
+        QSS3KeyPrefix: !Sub '${QSS3KeyPrefix}submodules/quickstart-linux-bastion/'
+        RemoteAccessCIDR: !Ref 'BastionInboundCIDR'
+        VPCID: !GetAtt 'VPCStack.Outputs.VPCID'
+        EnableTCPForwarding: 'true'
+  RDGWStack:
+    Type: AWS::CloudFormation::Stack
+    DependsOn: VPCStack
+    Properties:
+      TemplateURL: !Sub
+<<<<<<< HEAD
+        - 'https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}submodules/quickstart-microsoft-rdgateway/templates/rdgw-standalone.template'
+        - S3Region: !If [UsingDefaultBucket, !Ref 'AWS::Region', !Ref QSS3BucketRegion]
+          S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
+=======
+        - https://${QSS3BucketName}.${QSS3Region}.amazonaws.com/${QSS3KeyPrefix}submodules/quickstart-microsoft-rdgateway/templates/rdgw-standalone.template
+        - QSS3Region: !If
+            - GovCloudCondition
+            - s3-us-gov-west-1
+            - s3
+>>>>>>> flipped tableau-awsdata-master.template to yaml
+>>>>>>> a657561a5e27cdee2aa83165568fa6b27522c826
       Parameters:
         AdminPassword: !Ref 'RDGWAdminPassword'
         AdminUser: !Ref 'RDGWAdminUser'
         KeyPairName: !Ref 'KeyPairName'
         DomainDNSName: !Ref 'DomainDNSName'
+<<<<<<< HEAD
         PublicSubnet1ID: !GetAtt 
           - VPCStack
           - Outputs.PublicSubnet1ID
@@ -745,12 +874,22 @@ Resources:
           - Outputs.PublicSubnet2ID
         QSS3BucketName: !Ref QSS3BucketName
         QSS3BucketRegion: !Ref QSS3BucketRegion            
+=======
+        PublicSubnet1ID: !GetAtt 'VPCStack.Outputs.PublicSubnet1ID'
+        PublicSubnet2ID: !GetAtt 'VPCStack.Outputs.PublicSubnet2ID'
+        QSS3BucketName: !Ref 'QSS3BucketName'
+<<<<<<< HEAD
+        QSS3BucketRegion: !Ref 'QSS3BucketRegion'
+=======
+>>>>>>> flipped tableau-awsdata-master.template to yaml
+>>>>>>> a657561a5e27cdee2aa83165568fa6b27522c826
         QSS3KeyPrefix: !Sub '${QSS3KeyPrefix}submodules/quickstart-microsoft-rdgateway/'
         RDGWInstanceType: !Ref 'RDGWInstanceType'
         RDGWCIDR: !If
           - NoRDGWInboundCIDRCondition
           - !GetAtt 'VPCStack.Outputs.VPCCIDR'
           - !Ref 'RDGWInboundCIDR'
+<<<<<<< HEAD
         VPCID: !GetAtt 
           - VPCStack
           - Outputs.VPCID
@@ -765,6 +904,27 @@ Resources:
         BastionEIP: !GetAtt 
           - LinuxBastionStack
           - Outputs.EIP1
+=======
+        VPCID: !GetAtt 'VPCStack.Outputs.VPCID'
+  TableauAwsdataStack:
+    DependsOn: VPCStack
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: !Sub
+<<<<<<< HEAD
+        - 'https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}submodules/quickstart-aws-vpc/templates/aws-vpc.template'
+        - S3Region: !If [UsingDefaultBucket, !Ref 'AWS::Region', !Ref QSS3BucketRegion]
+          S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
+=======
+        - https://${QSS3BucketName}.${QSS3Region}.amazonaws.com/${QSS3KeyPrefix}templates/tableau-awsdata.template
+        - QSS3Region: !If
+            - GovCloudCondition
+            - s3-us-gov-west-1
+            - s3
+>>>>>>> flipped tableau-awsdata-master.template to yaml
+      Parameters:
+        BastionEIP: !GetAtt 'LinuxBastionStack.Outputs.EIP1'
+>>>>>>> a657561a5e27cdee2aa83165568fa6b27522c826
         ContentAdminPassword: !Ref 'ContentAdminPassword'
         ContentAdminUser: !Ref 'ContentAdminUser'
         DatasetS3BucketName: !Ref 'DatasetS3BucketName'
@@ -773,6 +933,7 @@ Resources:
         HostedZoneName: !Ref 'HostedZoneName'
         KeyPairName: !Ref 'KeyPairName'
         LoadDataset: !Ref 'LoadDataset'
+<<<<<<< HEAD
         PrivateSubnet1ID: !GetAtt 
           - VPCStack
           - Outputs.PrivateSubnet1AID
@@ -788,6 +949,19 @@ Resources:
         RDGWElasticIP: !GetAtt 
           - RDGWStack
           - Outputs.EIP1
+=======
+        PrivateSubnet1ID: !GetAtt 'VPCStack.Outputs.PrivateSubnet1AID'
+        PrivateSubnet2ID: !GetAtt 'VPCStack.Outputs.PrivateSubnet2AID'
+        PublicSubnet1ID: !GetAtt 'VPCStack.Outputs.PublicSubnet1ID'
+        PublicSubnet2ID: !GetAtt 'VPCStack.Outputs.PublicSubnet2ID'
+        QSS3BucketName: !Ref 'QSS3BucketName'
+<<<<<<< HEAD
+        QSS3BucketRegion: !Ref 'QSS3BucketRegion'
+=======
+>>>>>>> flipped tableau-awsdata-master.template to yaml
+        QSS3KeyPrefix: !Ref 'QSS3KeyPrefix'
+        RDGWElasticIP: !GetAtt 'RDGWStack.Outputs.EIP1'
+>>>>>>> a657561a5e27cdee2aa83165568fa6b27522c826
         RDSAllocatedStorage: !Ref 'RDSAllocatedStorage'
         RDSDatabaseName: !Ref 'RDSDatabaseName'
         RDSDatabasePort: !Ref 'RDSDatabasePort'
@@ -829,6 +1003,7 @@ Resources:
           - !GetAtt 'VPCStack.Outputs.VPCCIDR'
           - !Ref 'TableauServerInboundCIDR'
         TableauServerLicenseKey: !Ref 'TableauServerLicenseKey'
+<<<<<<< HEAD
         VPCCIDR: !GetAtt 
           - VPCStack
           - Outputs.VPCCIDR
@@ -876,3 +1051,32 @@ Outputs:
     Value: !GetAtt 
     - TableauAwsdataStack
     - Outputs.RDSPrivateName
+=======
+        VPCCIDR: !GetAtt 'VPCStack.Outputs.VPCCIDR'
+        VPCID: !GetAtt 'VPCStack.Outputs.VPCID'
+Outputs:
+  TableauServerURL:
+    Description: URL through which Tableau Server can be accessed.
+    Value: !GetAtt 'TableauAwsdataStack.Outputs.TableauServerURL'
+  BastionPublicName:
+    Description: Convenient Name for Bastion Public Access
+    Value: !GetAtt 'TableauAwsdataStack.Outputs.BastionPublicName'
+  RDGWPublicName:
+    Description: Convenient Name for RDGW Public Access
+    Value: !GetAtt 'TableauAwsdataStack.Outputs.RDGWPublicName'
+  TableauServerPublicName:
+    Description: Convenient Name for TableauServer Public Access
+    Value: !GetAtt 'TableauAwsdataStack.Outputs.TableauServerPublicName'
+  TableauServerPrivateName:
+    Description: Convenient Name for TableauServer Private Access
+    Value: !GetAtt 'TableauAwsdataStack.Outputs.TableauServerPrivateName'
+  SqlWorkerPrivateName:
+    Description: Convenient Name for SqlWorker Private Access
+    Value: !GetAtt 'TableauAwsdataStack.Outputs.SqlWorkerPrivateName'
+  RedshiftPrivateName:
+    Description: Convenient Name for Redshift Private Access
+    Value: !GetAtt 'TableauAwsdataStack.Outputs.RedshiftPrivateName'
+  RDSPrivateName:
+    Description: Convenient Name for Postgres RDS Private Access
+    Value: !GetAtt 'TableauAwsdataStack.Outputs.RDSPrivateName'
+>>>>>>> a657561a5e27cdee2aa83165568fa6b27522c826

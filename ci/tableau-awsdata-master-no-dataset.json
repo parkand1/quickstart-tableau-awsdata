@@ -53,7 +53,7 @@
     },
     {
         "ParameterKey": "LoadDataset",
-        "ParameterValue": "false"
+        "ParameterValue": "true"
     },
     {
         "ParameterKey": "RDGWAdminPassword",
@@ -169,7 +169,7 @@
     },
     {
         "ParameterKey": "RegPhone",
-        "ParameterValue": "TestPhone"
+        "ParameterValue": "555-555-5555"
     },
     {
         "ParameterKey": "RegState",
@@ -181,7 +181,7 @@
     },
     {
         "ParameterKey": "RegZip",
-        "ParameterValue": "TestZip"
+        "ParameterValue": "55555"
     },
     {
         "ParameterKey": "SqlWorkerInstanceType",

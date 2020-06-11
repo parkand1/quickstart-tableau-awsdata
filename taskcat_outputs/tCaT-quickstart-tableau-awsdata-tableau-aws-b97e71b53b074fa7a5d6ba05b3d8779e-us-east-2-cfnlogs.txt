@@ -1,0 +1,19 @@
+-----------------------------------------------------------------------------
+Region: us-east-2
+StackName: tCaT-quickstart-tableau-awsdata-tableau-aws-b97e71b53b074fa7a5d6ba05b3d8779e
+*****************************************************************************
+ResourceStatusReason:  
+Parameter validation failed: parameter value cikey for parameter name KeyPairName
+does not exist
+*****************************************************************************
+*****************************************************************************
+Events:  
+TimeStamp                         ResourceStatus      ResourceType                LogicalResourceId                                                             ResourceStatusReason
+--------------------------------  ------------------  --------------------------  ----------------------------------------------------------------------------  ------------------------------------------------------------------------------------------------
+2020-05-20 23:19:29.772000+00:00  CREATE_FAILED       AWS::CloudFormation::Stack  tCaT-quickstart-tableau-awsdata-tableau-aws-b97e71b53b074fa7a5d6ba05b3d8779e  Parameter validation failed: parameter value cikey for parameter name KeyPairName does not exist
+2020-05-20 23:19:26.732000+00:00  CREATE_IN_PROGRESS  AWS::CloudFormation::Stack  tCaT-quickstart-tableau-awsdata-tableau-aws-b97e71b53b074fa7a5d6ba05b3d8779e  User Initiated
+*****************************************************************************
+-----------------------------------------------------------------------------
+Tested on: Wednesday, 20. May 2020 04:21PM
+-----------------------------------------------------------------------------
+
