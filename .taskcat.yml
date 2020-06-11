@@ -36,6 +36,7 @@ tests:
       KeyPairName: $[alfred_getkeypair]
       LoadDataset: 'true'
       QSS3BucketName: $[taskcat_autobucket]
+      QSS3BucketRegion: $[taskcat_current_region]
       RDGWAdminPassword: $[alfred_genpass_16]
       RDGWAdminUser: admin
       RDGWInboundCIDR: 10.0.0.0/16
@@ -93,6 +94,7 @@ tests:
       KeyPairName: $[alfred_getkeypair]
       LoadDataset: 'false'
       QSS3BucketName: $[taskcat_autobucket]
+      QSS3BucketRegion: $[taskcat_current_region]
       RDGWAdminPassword: $[alfred_genpass_16]
       RDGWAdminUser: admin
       RDGWInboundCIDR: 10.0.0.0/16
